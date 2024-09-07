@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Date Picker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .year-display {
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Worker Availability</h1>
+    <form id="availabilityForm">
+        <fieldset>
+            <legend>Set Availability:</legend>
+            <div class="availability-checkboxes">
+                <label><input type="checkbox" name="availability" value="Monday"> Monday</label>
+                <label><input type="checkbox" name="availability" value="Tuesday"> Tuesday</label>
+                <label><input type="checkbox" name="availability" value="Wednesday"> Wednesday</label>
+                <label><input type="checkbox" name="availability" value="Thursday"> Thursday</label>
+                <label><input type="checkbox" name="availability" value="Friday"> Friday</label>
+                <label><input type="checkbox" name="availability" value="Saturday"> Saturday</label>
+                <label><input type="checkbox" name="availability" value="Sunday"> Sunday</label>
+            </div>
+            <div class="input-group">
+                <label for="startTime">Start Time:</label>
+                <input type="time" id="startTime" value="08:00">
+            </div>
+            <div class="input-group">
+                <label for="endTime">End Time:</label>
+                <input type="time" id="endTime" value="17:00">
+            </div>
+            <button type="button" onclick="setAvailability()">Set Availability</button>
+        </fieldset>
+    </form>
+
+    <h1>Customer View</h1>
+    <div class="year-display" id="yearDisplay"></div>
+    <div class="input-group">
+        <label for="dateInput">Select Date:</label>
+        <input type="text" id="dateInput">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dateInput = document.getElementById('dateInput');
+            const yearDisplay = document.getElementById('yearDisplay');
+            let availableDays = [];
+
+            function getSelectedDays() {
+                return Array.from(document.querySelectorAll('input[name="availability"]:checked'))
+                    .map(checkbox => checkbox.value);
+            }
+
+            function setAvailability() {
+                const selectedDays = getSelectedDays();
+                availableDays = selectedDays.length > 0 ? selectedDays : [];
+                updateDateInput();
+            }
+
+            function updateDateInput() {
+                const now = new Date();
+                const currentYear = now.getFullYear();
+                const minDate = new Date(currentYear, now.getMonth(), 1);
+                const maxDate = new Date(currentYear, now.getMonth() + 2, 0); // Allow viewing for current and next month
+
+                // Display current year
+                yearDisplay.textContent = `Year: ${currentYear}`;
+
+                flatpickr(dateInput, {
+                    minDate: minDate.toISOString().split('T')[0],
+                    maxDate: maxDate.toISOString().split('T')[0],
+                    disable: [
+                        function(date) {
+                            const dayName = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][date.getDay()];
+                            return !availableDays.includes(dayName);
+                        }
+                    ],
+                    locale: {
+                        firstDayOfWeek: 1 // Set Monday as the first day of the week
+                    },
+                    onChange: function(selectedDates, dateStr, instance) {
+                        // Handle date change if needed
+                    }
+                });
+            }
+
+            window.setAvailability = setAvailability;
+
+            // Initial setup
+            updateDateInput();
+        });
+    </script>
+</body>
+</html>

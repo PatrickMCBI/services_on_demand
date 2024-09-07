@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - On Hold</title>
+    <style>
+        .container {
+            margin: 20px;
+        }
+        #paypal-button-container {
+            margin-top: 20px;
+        }
+        #confirm-completion {
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Payment - On Hold</h1>
+        <div id="paypal-button-container"></div>
+        <button id="confirm-completion">Confirm Completion</button>
+    </div>
+
+    <script src="https://www.paypal.com/sdk/js?client-id=AR_3EO_kjFUBuSYiI38Ses3wh9oXeJ3day5RxR6znCqcnAVIx7F2fuMNhLJLVUnkIP24wKoO4a_zv6FM&currency=PHP"></script>
+    <script>
+        let authorizationID;
+
+        // PayPal Buttons Setup
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            currency_code: 'PHP',
+                            value: '100.00', // Total amount paid by the client
+                            breakdown: {
+                                item_total: { value: '100.00', currency_code: 'PHP' }
+                            }
+                        },
+                        payee: {
+                            email_address: 'worker@example.com' // Worker’s PayPal email
+                        },
+                        payments: {
+                            disbursements: [
+                                {
+                                    amount: { value: '95.00', currency_code: 'PHP' },
+                                    payee: { email_address: 'worker@example.com' }
+                                },
+                                {
+                                    amount: { value: '5.00', currency_code: 'PHP' },
+                                    payee: { email_address: 'company@example.com' } // Company’s PayPal email
+                                }
+                            ]
+                        }
+                    }],
+                    application_context: {
+                        payment_method: {
+                            payee_preferred: "IMMEDIATE_PAYMENT_REQUIRED"
+                        }
+                    }
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.authorize().then(function(authorization) {
+                    authorizationID = authorization.purchase_units[0].payments.authorizations[0].id;
+                    alert('Payment is authorized and on hold.');
+                    document.getElementById('confirm-completion').style.display = 'block'; // Show the "Confirm Completion" button
+                });
+            }
+        }).render('#paypal-button-container');
+
+        // Handle the "Confirm Completion" button click
+        document.getElementById('confirm-completion').addEventListener('click', function() {
+            if (authorizationID) {
+                // Capture the payment when client confirms completion
+                capturePayment(authorizationID);
+            }
+        });
+
+        // Capture payment function
+        function capturePayment(authorizationID) {
+            fetch(`https://api-m.sandbox.paypal.com/v2/payments/authorizations/${authorizationID}/capture`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer YOUR_ACCESS_TOKEN`, // Replace with your PayPal access token
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => response.json())
+            .then(data => {
+                if (data.status === 'COMPLETED') {
+                    alert('Payment completed successfully!');
+                } else {
+                    alert('Payment failed or was not completed.');
+                }
+            }).catch(error => console.error('Error capturing payment:', error));
+        }
+    </script>
+</body>
+</html>

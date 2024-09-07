@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="services_on_demand/css/login.css">
+</head>
+<body>
+    <div class="content">
+        <div class="container">
+            <div class="img-cont">
+                <img src="services_on_demand/images/login_img.svg" alt="login_img">
+            </div>
+            <div class="form-cont">
+                <div class="form-grid">
+                    <div class="form-header">
+                        <h1>Register new account</h1>
+                        <p>Easy future transaction.</p>
+                    </div>
+                    <div class="form-body">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <input type="hidden" name="userTypeID" usertype-id="4" class="jsUserType">
+                            <!-- 1. admin, 2.moderator, 3.guest, 4.consumer, 5.worder -->
+                            <div class="form-input">
+                                <div>
+                                    <label for="">Firstname <span class="req-red">*</span></label>
+                                </div>
+                                <input type="text" name="firstname" placeholder="Firstname" class="jsFirstName" autocomplete="off">
+                            </div>
+                            <div class="form-input">
+                                <div>
+                                    <label for="">Lastname <span class="req-red">*</span></label>
+                                </div>
+                                <input type="text" name="lastname" placeholder="Lastname" class="jsLastName" autocomplete="off">
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div class="form-input">
+                                <div>
+                                    <label for="">Username <span class="req-red">*</span></label>
+                                </div>
+                                <input type="text" name="username" placeholder="Email" class="jsUserName" autocomplete="off">
+                            </div>
+                            <div class="form-input">
+                                <div>
+                                    <label for="">Password <span class="req-red">*</span></label>
+                                </div>
+                                <input type="password" name="password" placeholder="Password" class="jsPassword" autocomplete="off">
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div class="form-input">
+                                <div>
+                                    <label for="">Mobile No. <span class="req-red">*</span></label>
+                                </div>
+                                <input type="text" name="mobile" class="jsMobileNum" autocomplete="off">
+                            </div>
+                            <div class="form-input">
+                                <div>
+                                    <label for="">Birthday <span class="req-red">*</span></label>
+                                </div>
+                                <input type="date" name="birthdate" class="jsBirthdate" autocomplete="off">
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr;">
+                            <div class="form-input">
+                                <div>
+                                    <label for="">Services. <span class="req-red">*</span></label>
+                                </div>
+                                <input type="text" list="services" id="baby_age" name="baby_age" class="form-control" autocomplete="off" oninput="updatePrice()">
+                                <datalist id="services">
+                                    <option data-id="1" value="Cleaning"></option>
+                                    <option data-id="2" value="Gardening/Landscaping"></option>
+                                    <option data-id="3" value="Cooking"></option>
+                                    <option data-id="4" value="BabySitting/Nanny"></option>
+                                    <option data-id="5" value="Home Organization"></option>
+                                    <option data-id="6" value="Massage"></option>
+                                </datalist>
+                            </div>
+                            
+                        </div>
+                        <div class="btn-cont">
+                            <button class="btn-login jsbtnCreate">Create</button>
+                            <button class="btn-login jsbtnLogin">Login</button>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+         document.querySelector('.jsbtnLogin').addEventListener('click', () =>{
+            window.location.href = 'login.html';
+        });
+    </script>
+    <script type="module">
+        import {fetchData, postData} from './services_on_demand/js/global.js';
+
+        document.querySelector('.jsbtnCreate').addEventListener('click', () =>{
+            saveNewUser();
+        });
+
+        function saveNewUser(){
+            const firstName = document.querySelector('.jsFirstName');
+            const lastName = document.querySelector('.jsLastName');
+            const userName = document.querySelector('.jsUserName');
+            const passWord = document.querySelector('.jsPassword');
+            const birthDate = document.querySelector('.jsBirthdate');
+            const mobile = document.querySelector('.jsMobileNum');
+            const userTypeID = document.querySelector('.jsUserType')
+
+            const formData = {
+                FirstName : firstName.value,
+                LastName : lastName.value,
+                UserName : userName.value,
+                Password : passWord.value,
+                PhoneNumber : mobile.value,
+                BirthDate : birthDate.value,
+                UserTypeID : userTypeID.getAttribute('usertype-id')
+            }
+
+            const data = postData('http://127.0.0.1:5000/addusers', formData);
+            data.then((response) => {
+                console.log(" --- data: ", response);
+            }).catch((error) => {
+                console.error("Error: ", error);
+            });
+        }
+    </script>
+</body>
+</html>

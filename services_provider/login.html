@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="services_on_demand/css/login.css">
+</head>
+<body>
+    <div class="content">
+        <div class="container">
+            <div class="img-cont">
+                <img src="services_on_demand/images/login_img.svg" alt="login_img">
+            </div>
+            <div class="form-cont">
+                <div class="form-grid">
+                    <div class="form-header">
+                        <h1>Secure your services Login</h1>
+                        <p>Email or Phone Number</p>
+                    </div>
+                    <div class="form-body">
+                        <div class="form-input">
+                            <input type="text" name="uname" placeholder="Email" class="jsUserName" autocomplete="off">
+                        </div>
+                        <div class="form-input">
+                            <input type="password" name="pword" placeholder="password" class="jsPassword" autocomplete="off">
+                        </div>
+                        <div class="btn-cont">
+                            <button class="btn-login jsbtnLogin">Login</button>
+                            <button class="btn-login jsbtnCreate">Create Account</button>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import {fetchData, postData} from './services_on_demand/js/global.js';
+
+        document.querySelector('.jsbtnCreate').addEventListener('click', () =>{
+            window.location.href = 'register.html';
+        });
+
+        document.querySelector('.jsbtnLogin').addEventListener('click', async () => {
+            const uname = document.querySelector('.jsUserName');
+            const pword = document.querySelector('.jsPassword');
+
+            const formData = {
+                UserName : uname.value,
+                Password : pword.value
+            }
+
+            const data = await postData('http://127.0.0.1:5000/login', formData);
+            console.log(" --- data: ", data);
+            if(data.UserTypeID == 1){
+                // admin
+                console.log("admin");
+                window.location.href = 'admin/index.html';
+                sessionStorage.setItem('AccountID', data.AccountID)
+                sessionStorage.setItem('UserID', data.UserID)
+                sessionStorage.setItem('FullName', data.FullName)
+                sessionStorage.setItem('ProfileImage', data.ProfileImage)
+
+            }else if(data.UserTypeID == 4){
+                // consumeer or user
+                console.log("consumer");
+                window.location.href = 'services_on_demand/index.html';
+                sessionStorage.setItem('AccountID', data.AccountID)
+                sessionStorage.setItem('UserID', data.UserID)
+                sessionStorage.setItem('FullName', data.FullName)
+                sessionStorage.setItem('ProfileImage', data.ProfileImage)
+               
+            }else if(data.UserTypeID == 5){
+                // worker
+                console.log("worker");
+                window.location.href = 'admin/worker.html';
+                sessionStorage.setItem('AccountID', data.AccountID)
+                sessionStorage.setItem('UserID', data.UserID)
+                sessionStorage.setItem('FullName', data.FullName)
+                sessionStorage.setItem('ProfileImage', data.ProfileImage)
+            }   
+           
+        });
+    </script>
+</body>
+</html>

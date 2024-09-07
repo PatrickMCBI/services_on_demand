@@ -1,0 +1,55 @@
+.orange{
+    background-color: orange;
+    color: #fff;
+  }
+  .yellow-green{
+    background-color: #00d700;
+    color: #fff;
+  }
+  .green{
+    background-color: green;
+    color: #fff;
+  }
+  .red{
+    background-color: red;
+    color: #fff;
+  }
+  .booking-action{
+    display: flex;
+    justify-content: space-around;
+  }
+  .booking-accept>i{
+    color: #08cf08;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .booking-accept>i:hover{
+    color: green;
+  }
+  .booking-cancel>i{
+    color: #ff4949;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .booking-cancel>i:hover{
+    color: red;
+  }
+  .availability-checkboxes{
+    display: flex;
+    gap: 45px;
+  }
+  .group-avail{
+    display: flex; 
+    align-items: center; 
+    gap: 10px;
+  }
+  .group-avail input{
+    margin: 0; width: 20px; height: 20px;
+  }
+  .group-avail span{
+    font-size: 15px;
+  }
+  .mg-tb-5{
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }

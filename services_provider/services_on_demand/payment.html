@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Services on Demand</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <!-- font awesome style -->
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+
+</head>
+
+<body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="header_top">
+        <div class="container-fluid">
+            <div class="contact_nav">
+              <a href="">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <span>
+                  Call : +63 000-000-0000
+                </span>
+              </a>
+              <a href="../login.html" class="jsLogReg">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+                <span>
+                  Login/Register
+                </span>
+              </a>
+              <div class="jsLogoutContianer" style="display: none;">
+                <a href="mybooking.html">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  <span>My Booking</span>
+                </a>
+                <a href="index.html" class="jsLogout">
+                  <i class="fa fa-sign-out" aria-hidden="true"></i>
+                  <span>
+                    Logout
+                </span>
+                </a>
+                
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="header_bottom">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container ">
+            <a class="navbar-brand" href="index.html">
+              <span>
+                Services On Demand
+              </span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class=""> </span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ">
+                <li class="nav-item ">
+                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="about.html"> About</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="service.html">Services</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contact.html">Contact Us</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <!-- end header section -->
+  </div>
+ 
+  <!-- service section -->
+
+  <section class="service_section">
+    <div class="container ">
+        <div class="row g-5" style="padding: 40px;">
+          <div class="col-md-5 col-lg-4 order-md-last">
+            <h4 class="mb-3">Details</h4>
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">Start Date:</h6>
+                    </div>
+                    <span class="text-body-secondary jsStartDate-Display"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">End Date:</h6>
+                    </div>
+                    <span class="text-body-secondary jsEndDate-Display"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">Start Hour:</h6>
+                    </div>
+                    <span class="text-body-secondary jsStartHour-Display"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">End Hour:</h6>
+                    </div>
+                    <span class="text-body-secondary jsEndHour-Display"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">Address:</h6>
+                    </div>
+                    <span class="text-body-secondary jsAddress-Display"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">Additional Message:</h6>
+                    </div>
+                    <span class="text-body-secondary jsMessage-Display"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+                    <div class="text-success">
+                        <h6 class="my-0">Promo Code:</h6>
+                        <small>EXAMPLECODE</small>
+                    </div>
+                    <span class="text-success">-</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Total:</span>
+                    <strong class="jsTotalAmount"></strong>
+                </li>
+            </ul>
+        
+            <form class="card p-2">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Promo code">
+                    <button type="submit" class="btn btn-secondary">Redeem</button>
+                </div>
+            </form>
+          </div>
+        
+          <div class="col-md-7 col-lg-8">
+            <h4 class="mb-3">Payment</h4>
+            <div class="form-group" >
+                <label>Payment Method</label>
+                
+                <select id="payment-method" name="payment-method" required style="width: 350px; height: 30px;" >
+                    <option value="paypal">PayPal</option>
+                    <option value="maya">Maya</option>
+                    <option value="gcash">GCash</option>
+                </select>
+            </div>
+            <div style="width: 350px;">
+                <div id="paypal-button-container" style="display:block;"></div>
+                <div id="maya-button-container" style="display:none;">
+                    <button id="maya-button" class="paymaya-btn"></button>
+                </div>
+                <div id="gcash-button-container" style="display:none;">
+                    <button id="gcash-button" class="gcash-btn"></button>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- end service section -->
+
+  <!-- info section -->
+  <section class="info_section ">
+    <div class="container">
+      <h4>
+        Get In Touch
+      </h4>
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="info_items">
+            <div class="row">
+              <div class="col-md-4">
+                <a href="">
+                  <div class="item ">
+                    <div class="img-box ">
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    </div>
+                    <p>
+                      Lorem Ipsum is simply dummy text
+                    </p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-md-4">
+                <a href="">
+                  <div class="item ">
+                    <div class="img-box ">
+                      <i class="fa fa-phone" aria-hidden="true"></i>
+                    </div>
+                    <p>
+                      +02 1234567890
+                    </p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-md-4">
+                <a href="">
+                  <div class="item ">
+                    <div class="img-box">
+                      <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </div>
+                    <p>
+                      demo@gmail.com
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="social-box">
+      <h4>
+        Follow Us
+      </h4>
+      <div class="box">
+        <a href="">
+          <i class="fa fa-facebook" aria-hidden="true"></i>
+        </a>
+        <a href="">
+          <i class="fa fa-twitter" aria-hidden="true"></i>
+        </a>
+        <a href="">
+          <i class="fa fa-youtube" aria-hidden="true"></i>
+        </a>
+        <a href="">
+          <i class="fa fa-instagram" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- end info_section -->
+
+  <!-- footer section -->
+  <footer class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayDateYear"></span> All Rights Reserved By
+        <a href="https://html.design/">Free Html Templates</a>
+      </p>
+    </div>
+  </footer>
+  <!-- footer section -->
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+    </script>
+    <script src="js/custom.js"></script>
+    <!-- Google Map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
+  <!-- End Google Map -->
+    <script>
+      if(sessionStorage.getItem("AccountID") > 0){
+     
+     document.querySelector('.jsLogReg').style = 'display:none';
+     document.querySelector('.jsLogoutContianer').style = 'display:flex; gap: 20px;';
+
+   }
+
+   if(document.querySelector('.jsLogoutContianer')){
+     document.querySelector('.jsLogout').addEventListener('click', () =>{
+       sessionStorage.setItem('AccountID', 0)
+       document.querySelector('.jsLogoutContianer').style = 'display:none';
+     });
+     
+   }
+
+    </script>
+     <script src="https://www.paypal.com/sdk/js?client-id=AR_3EO_kjFUBuSYiI38Ses3wh9oXeJ3day5RxR6znCqcnAVIx7F2fuMNhLJLVUnkIP24wKoO4a_zv6FM&currency=PHP"></script>
+     <script type="module">
+        import { fetchData, postData } from './js/global.js';
+         // Function to get URL query parameters
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                worker : params.get('worker'),
+                services : params.get('services'),
+                startDate: params.get('start-date'),
+                endDate: params.get('end-date'),
+                startHour: params.get('start-hour'),
+                endHour: params.get('end-hour'),
+                address: params.get('address'),
+                message: params.get('message'),
+                paymentAmount: params.get('total-price')
+            };
+        }
+ 
+         // Retrieve query parameters
+        let formData = getQueryParams();
+        console.log(formData, " --- ")
+        function initializeDetails(){
+          document.querySelector('.jsStartDate-Display').textContent = formData.startDate || 'N/A';
+          document.querySelector('.jsEndDate-Display').textContent = formData.endDate || 'N/A';
+          document.querySelector('.jsStartHour-Display').textContent = formData.startHour ? convertTo12Hour(formData.startHour) : 'N/A';
+          document.querySelector('.jsEndHour-Display').textContent = formData.startHour ? convertTo12Hour(formData.endHour) : 'N/A';
+          document.querySelector('.jsAddress-Display').textContent = formData.address || 'N/A';
+          document.querySelector('.jsMessage-Display').textContent = formData.message || 'N/A';
+          document.querySelector('.jsTotalAmount').textContent = formData.paymentAmount || '0.00';
+
+        }
+         // Initialize payment options
+        function initializePaymentOptions() {
+             // Initialize PayPal by default
+            initializePayPal();
+            initializeDetails();
+             // Event listener for payment method change
+            document.getElementById('payment-method').addEventListener('change', function() {
+                const paymentMethod = this.value;
+                handlePayment(paymentMethod);
+            });
+        }
+ 
+         // Handle payment based on selected method
+        function handlePayment(paymentMethod) {
+             // Hide all payment options
+            document.getElementById('paypal-button-container').style.display = 'none';
+            document.getElementById('maya-button-container').style.display = 'none';
+            document.getElementById('gcash-button-container').style.display = 'none';
+ 
+             // Remove existing PayPal buttons
+            if (paypal.Buttons) {
+                document.getElementById('paypal-button-container').innerHTML = '';
+            }
+ 
+             // Display selected payment option
+            if (paymentMethod === 'paypal') {
+                document.getElementById('paypal-button-container').style.display = 'block';
+                initializePayPal();
+            } else if (paymentMethod === 'maya') {
+                document.getElementById('maya-button-container').style.display = 'block';
+                document.getElementById('maya-button').addEventListener('click', processMayaPayment);
+            } else if (paymentMethod === 'gcash') {
+                document.getElementById('gcash-button-container').style.display = 'block';
+                document.getElementById('gcash-button').addEventListener('click', processGCashPayment);
+            }
+        }
+ 
+          // Initialize PayPal Buttons
+          function initializePayPal() {
+              paypal.Buttons({
+                  createOrder: function(data, actions) {
+                      return actions.order.create({
+                          purchase_units: [{
+                              amount: {
+                                  currency_code: 'PHP',
+                                  value: formData.paymentAmount // Payment amount from query params
+                              },
+                              description: `Booking from ${formData.startDate} to ${formData.endDate}. Address: ${formData.address}. Message: ${formData.message}` // Additional details
+                          }]
+                      });
+                  },
+                  onApprove: function(data, actions) {
+                      return actions.order.capture().then(function(details) {
+                          console.log(formData ," -- ")
+                          AddBooking(formData)
+                          alert('paypal Transaction completed by ' + details.payer.name.given_name);
+                      });
+                  },
+                  onError: function(err) {
+                      console.error('PayPal error:', err);
+                  }
+              }).render('#paypal-button-container');
+          }
+  
+         // Process Maya Payment (Placeholder for actual integration)
+        function processMayaPayment() {
+             // Example placeholder code
+            alert('Maya payment processing is not implemented in this example.');
+        }
+ 
+         // Process GCash Payment (Placeholder for actual integration)
+        function processGCashPayment() {
+             // Example placeholder code
+            alert('GCash payment processing is not implemented in this example.');
+        }
+        function AddBooking(dataInput){
+            
+            const formData = {
+                AccountID : sessionStorage.getItem('AccountID'),
+                UserID : dataInput.worker,
+                WServicesID : dataInput.services,
+                BookingStartDate : dataInput.startDate,
+                BookingEndDate : dataInput.endDate,
+                BookingAddress : dataInput.address,
+                BookingMessage : dataInput.message,
+                TotalPrice : dataInput.paymentAmount,
+                PaymentMethod : document.querySelector('#payment-method').value,
+            }
+
+            const data = postData('http://127.0.0.1:5000/addbooking', formData);
+            console.log(" ---- data: ", data)
+            alert('save Transaction completed by ', data);
+        }
+         // Initialize payment options on page load
+        window.onload = initializePaymentOptions;
+
+        function convertTo12Hour(time24) {
+          let [hours, minutes] = time24.split(':').map(Number);
+          let period = hours >= 12 ? 'PM' : 'AM';
+          hours = hours % 12 || 12; // Convert hour from 24-hour to 12-hour format
+          minutes = minutes < 10 ? '0' + minutes : minutes; // Add leading zero if needed
+          return `${hours}:${minutes} ${period}`;
+        }
+     </script>
+</body>
+
+</html>
